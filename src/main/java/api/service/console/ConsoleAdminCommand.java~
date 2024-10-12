@@ -1,0 +1,54 @@
+package main.java.api.service.console;
+
+import main.java.api.model.User;
+
+import java.util.List;
+
+public class ConsoleAdminCommand {
+    ConsoleService consoleService;
+
+    public ConsoleAdminCommand(ConsoleService consoleService) {
+        this.consoleService = consoleService;
+    }
+
+    protected void listAllUsers() {
+        List<User> users = consoleService.userController.getAllUsers();
+        if (users.isEmpty()) {
+            System.out.println("Список пользователей пуст.");
+            return;
+        }
+        for (User user : users) {
+            System.out.printf("%s %s %s %s\n", user.getId(), user.getEmail(), user.getFirstName(), user.getLastName());
+        }
+    }
+
+    protected void blockUser() {
+        System.out.print("Введите ID пользователя: ");
+        long id = Long.parseLong(consoleService.getInput());
+        consoleService.userController.blockUser(id);
+    }
+
+    protected void unblockUser() {
+        System.out.print("Введите ID пользователя: ");
+        long id = Long.parseLong(consoleService.getInput());
+        consoleService.userController.unblockUser(id);
+    }
+
+    protected void deleteUser() {
+        System.out.print("Введите ID пользователя: ");
+        long id = Long.parseLong(consoleService.getInput());
+        consoleService.userController.deleteUser(id);
+    }
+
+    protected void roleAdmin() {
+        System.out.print("Введите ID пользователя: ");
+        long id = Long.parseLong(consoleService.getInput());
+        consoleService.userController.roleAdmin(id);
+    }
+
+    protected void roleUser() {
+        System.out.print("Введите ID пользователя: ");
+        long id = Long.parseLong(consoleService.getInput());
+        consoleService.userController.roleUser(id);
+    }
+}
