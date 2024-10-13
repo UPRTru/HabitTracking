@@ -117,7 +117,7 @@ public class HabitRepositoryLocal {
                             missedDays = Integer.parseInt(keyValue[1]);
                         } else if ("endDate".equalsIgnoreCase(keyValue[0])) {
                             endDate = new Date(Long.parseLong(keyValue[1]));
-                        } else if ("duration".equalsIgnoreCase(keyValue[0])) {
+                        } else if ("nextExecutionDate".equalsIgnoreCase(keyValue[0])) {
                             if (!keyValue[1].equals("null")) {
                                 nextExecutionDate = new Date(Long.parseLong(keyValue[1]));
                             }

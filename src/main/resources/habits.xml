@@ -1,3 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <habits>
+<habit id="0"><user_id>0</user_id><name>test</name><description>test</description><frequencyDay>1</frequencyDay><duration>7</duration><startDate>1728825686999</startDate><missedDays>0</missedDays><endDate>1729430486999</endDate><nextExecutionDate>1728912097598</nextExecutionDate><streak>1</streak><history><date>1728825697598</date></history></habit>
 </habits>

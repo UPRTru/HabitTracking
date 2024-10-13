@@ -88,6 +88,11 @@ public class HabitRepositoryLocal {
                     int endIndex = line.indexOf("\">", startIndex);
                     long id = Long.parseLong(line.substring(startIndex, endIndex));
 
+
+                    startIndex = line.indexOf("<history>") + 9;
+                    endIndex = line.indexOf("</history>", startIndex);
+                    String historyString = line.substring(startIndex, endIndex);
+
                     long user_id = 0;
                     String name = "";
                     String description = "";
@@ -100,6 +105,7 @@ public class HabitRepositoryLocal {
                     int streak = 0;
                     List<Date> history = new ArrayList<>();
                     for (String entry : entries(line)) {
+                        String t = entry;
                         String[] keyValue = entry.split(":");
                         if ("user_id".equalsIgnoreCase(keyValue[0])) {
                             user_id = Long.parseLong(keyValue[1]);
@@ -123,13 +129,11 @@ public class HabitRepositoryLocal {
                             }
                         } else if ("streak".equalsIgnoreCase(keyValue[0])) {
                             streak = Integer.parseInt(keyValue[1]);
-                        } else if ("history".equalsIgnoreCase(keyValue[0])) {
-                            if (keyValue[1] != null && !keyValue[1].equals("null")) {
-                                for (String entry2 : entries(keyValue[1])) {
-                                    String[] keyValue2 = entry2.split(":");
-                                    if ("date".equalsIgnoreCase(keyValue2[0])) {
-                                        history.add(new Date(Long.parseLong(keyValue2[1])));
-                                    }
+                        } else if (historyString != null && !historyString.isEmpty() && !historyString.equals("null")) {
+                            for (String entry2 : entries(historyString)) {
+                                String[] keyValue2 = entry2.split(":");
+                                if ("date".equalsIgnoreCase(keyValue2[0])) {
+                                    history.add(new Date(Long.parseLong(keyValue2[1])));
                                 }
                             }
                         }
